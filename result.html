@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<div class="container mx-auto p-6">
+        <!-- Logo en la esquina superior derecha -->
+        <img src="https://inecitas.com.mx/wp-content/uploads/2019/01/INE-1024x553.jpg" alt="Logo INE" class="absolute top-4 right-4 w-20">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESULTADOS DE BÚSQUEDA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        function toggleCausal() {
+            const participacion = document.getElementById('participacion').value;
+            const causalSection = document.getElementById('causal-section');
+            if (participacion === 'No') {
+                causalSection.style.display = 'block';
+            } else {
+                causalSection.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body class="bg-black text-white">
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-bold text-center mb-4" style="color: #A349A4;">RESULTADOS DE BÚSQUEDA</h1>
+        <div class="bg-[#A349A4] p-6 rounded shadow-md">
+            <p class="mb-2"><strong>Folio:</strong> {{ folio }}</p>
+            <p class="mb-2"><strong>Id Entidad:</strong> {{ result['Id_Entidad'] }}</p>
+            <p class="mb-2"><strong>Entidad:</strong> {{ result['Entidad'] }}</p>
+            <p class="mb-2"><strong>Id Distrito Electoral Federal:</strong> {{ result['Id_Distrito Electoral Federal'] }}</p>
+            <p class="mb-2"><strong>Cabecera D.E.F:</strong> {{ result['Cabecera D.E.F'] }}</p>
+            <p class="mb-2"><strong>Número de Envio:</strong> {{ result['Número de Envio'] }}</p>
+            <form action="/update" method="post" class="mt-4">
+                <input type="hidden" name="folio" value="{{ folio }}">
+
+                <label for="entregada" class="block text-lg font-semibold mb-2" style="color: white;">Entregada (Si/No):</label>
+                <select id="entregada" name="entregada" class="w-full p-2 border rounded mb-4" required style="color: black;">
+                    <option value="Si">Sí</option>
+                    <option value="No">No</option>
+                </select>
+
+                <label for="participacion" class="block text-lg font-semibold mb-2" style="color: white;">Participación (Si/No):</label>
+                <select id="participacion" name="participacion" class="w-full p-2 border rounded mb-4" required onchange="toggleCausal()" style="color: black;">
+                    <option value="Si">Sí</option>
+                    <option value="No">No</option>
+                </select>
+
+                <div id="causal-section" style="display:none;">
+                    <label for="causal" class="block text-lg font-semibold mb-2" style="color: white;">Causal:</label>
+                    <select id="causal" name="causal" class="w-full p-2 border rounded mb-4" style="color: black;">
+                        <option value="No se encontró a la ciudadana o ciudadano">No se encontró a la ciudadana o ciudadano</option>
+                        <option value="Nadie atiende en el domicilio">Nadie atiende en el domicilio</option>
+                        <option value="Vivienda deshabitada">Vivienda deshabitada</option>
+                        <option value="Falleció">Falleció</option>
+                        <option value="No está en condiciones de ejercer su voto">No está en condiciones de ejercer su voto</option>
+                        <option value="No desea participar">No desea participar</option>
+                        <option value="Cambio de domicilio">Cambio de domicilio</option>
+                        <option value="Extravió su CPV">Extravió su CPV</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="bg-purpure text-white px-4 py-2 rounded hover:bg-[#9370DB]">Guardar</button>
+            </form>
+            <div class="mt-6">
+                <a href="/" class="bg-purpure text-white px-4 py-2 rounded hover:bg-[#9370DB] mt-4 inline-block">Volver a Buscar Otro Folio</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

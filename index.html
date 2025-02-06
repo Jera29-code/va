@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEGUIMIENTO DE INVITACIONES VA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white">
+    <div class="container mx-auto p-6">
+        <!-- Logo en la esquina superior derecha -->
+        <img src="https://inecitas.com.mx/wp-content/uploads/2019/01/INE-1024x553.jpg" alt="Logo INE" class="absolute top-10 right-10 w-20">
+
+        <h1 class="text-3xl font-bold text-center mb-4" style="color: #A349A4;">SEGUIMIENTO DE INVITACIONES</h1>
+        <form action="/search" method="post" class="p-6 rounded shadow-md" style="background-color: #A349A4;">
+            <label for="folio" class="block text-lg font-semibold mb-2" style="color: black;">Ingresa el Folio:</label>
+            <input type="text" id="folio" name="folio" class="w-full p-2 border rounded mb-4" required style="color: black;">
+            <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-[#A349A4]">Buscar</button>
+            {% if error %}
+            <p class="text-red-500 mt-4">{{ error }}</p>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
